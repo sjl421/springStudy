@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <!-- ①从类路径加载Spring配置文件，classpath关键字特指在类路径下加载 -->
+    <!-- 多个配置文件可用逗号或空格隔开 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
+    <!-- 负责启动Spring容器提供的ContextLoaderListener监听器，它将引用①处的上下文参数获得Spring配置文件地址 -->
+    <!-- 该监听器在web容器启动时自动启动，根据contextConfigLocation Web容器参数获取Spring配置文件，并启动Spring容器 -->
+    <!-- Note:需要将log4j.propertis日志配置文件放置在类路径下，以便使日志引擎生效 -->
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
+    <!-- Spring MVC的主控Servlet -->
+    <!-- Spring MVC也拥有一个配置文件x（该文件名称和此Servlet有一个契约：<Servlet名>servlet.xml的形式）-->
+    <!-- SpringMVC的Servlet会自动将x与Spring的其他配置文件进行拼装 -->
+    <servlet>
+        <servlet-name>viewspace</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <load-on-startup>3</load-on-startup>
+    </servlet>
+
+    <!-- Spring MVC处理的URL -->
+    <servlet-mapping>
+        <servlet-name>viewspace</servlet-name>
+        <!-- 让所有以.html结尾的url都能被viewspace Servlet截获，进而由SpringMVC框架处理 -->
+        <!-- Struts框架中，URL后缀一般为*.do，Webwork中一般配置为*.action -->
+        <!-- 框架本身和URL模式没有任何关系，可使用任何喜欢的后缀 -->
+        <!-- 为何使用.html，①用户不能通过URL直接知道开发者采用何种服务端技术；②.html是静态网页后缀，可骗过搜索引擎，增加被搜录概率-->
+        <!-- 真正的无需动态处理的静态网页，可使用.htm区分，避免被框架截获 -->
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+</web-app>
