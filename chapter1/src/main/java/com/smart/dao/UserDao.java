@@ -27,7 +27,7 @@ public class UserDao {
      */
     public int getMatchCount(String userName, String passWord) {
         String sqlStr = " select count(*) from t_user "
-                + " where user_name=? and password=? "; //为避免语句错误，在每行的句首句尾都加空格
+                + " where user_name=? and password=? limit 1"; //为避免语句错误，在每行的句首句尾都加空格
         return jdbcTemplate.queryForInt(sqlStr, new Object[]{userName, passWord});
     }
 
@@ -39,7 +39,7 @@ public class UserDao {
      */
     public User findUserByUserName(final String userName) {
         String sqlStr = " select user_id,user_name "
-                + " from t_user where user_name=? ";
+                + " from t_user where user_name=? limit 1";
         final User user = new User();
         //RowCallbackHandler匿名类方式实现的回调函数
         jdbcTemplate.query(sqlStr, new Object[]{userName}, new RowCallbackHandler() {
