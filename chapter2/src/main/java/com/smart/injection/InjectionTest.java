@@ -11,21 +11,35 @@ import org.testng.annotations.Test;
 public class InjectionTest {
     public ApplicationContext factory = null;
 
-    private static String[] CONFIG_FILES = { "beans-injection.xml" };
+    private static String[] CONFIG_FILES = {"beans-injection.xml"};
 
     @BeforeClass
     public void setUp() throws Exception {
         factory = new ClassPathXmlApplicationContext(CONFIG_FILES);
 
     }
+
     @Test
-    public void propertyInjectTest(){
-        Car car=(Car)factory.getBean("car");
+    public void propertyInjectTest() {
+        Car car = (Car) factory.getBean("car");
         System.out.println(car);
     }
+
     @Test
-    public void ConstructorInjectTest(){
-        Car car=(Car)factory.getBean("car1");
+    public void ConstructorInjectByTypeTest() {
+        Car car = (Car) factory.getBean("carType");
+        System.out.println(car);
+    }
+
+    @Test
+    public void ConstructorInjectByIndexTest() {
+        Car car = (Car) factory.getBean("carIndex");
+        System.out.println(car);
+    }
+
+    @Test
+    public void ConstructorInjectByTypeAndIndexTest() {
+        Car car = (Car) factory.getBean("carTypeIndex");
         System.out.println(car);
     }
 }

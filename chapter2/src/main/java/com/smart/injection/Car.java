@@ -21,6 +21,16 @@ public class Car {
         this.brand = brand;
     }
 
+    public Car(String brand, String corp, double price) {
+        this.brand = brand;
+        this.corp = corp;
+        this.price = price;
+    }
+    public Car(String brand, String corp, int maxSpeed) {
+        this.brand = brand;
+        this.corp = corp;
+        this.maxSpeed = maxSpeed;
+    }
     public Car() {
     }
 
