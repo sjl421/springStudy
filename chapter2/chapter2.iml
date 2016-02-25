@@ -5,6 +5,7 @@
       <configuration>
         <fileset id="fileset" name="ApplicationContext" removed="false">
           <file>file://$MODULE_DIR$/src/main/java/com/smart/injectfun/beans.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/beans-injection.xml</file>
         </fileset>
       </configuration>
     </facet>
@@ -28,5 +29,10 @@
     <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:3.1.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-asm:3.1.1.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.testng:testng:6.3.1" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:3.8.1" level="project" />
+    <orderEntry type="library" name="Maven: org.beanshell:bsh:2.0b4" level="project" />
+    <orderEntry type="library" name="Maven: com.beust:jcommander:1.12" level="project" />
+    <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.6" level="project" />
   </component>
 </module>
