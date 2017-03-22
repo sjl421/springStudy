@@ -1,0 +1,11 @@
+# 开发环境配置
+server:
+  port: 8082
+  context-path: /girl
+fruit.apple: apple
+fruit.size: 6
+fruits: "fruitType: ${fruit.apple}, size:${fruit.size}"
+
+car:
+  color: red
+  size: 10

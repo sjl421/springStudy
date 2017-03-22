@@ -1,0 +1,70 @@
+一、配置文件2种写法：
+
+1、application.properties
+server.port=8081
+server.context-path=/boy
+
+2、application.yml
+server:
+  port: 8082
+  context-path: /girl
+注意:
+application.yml冒号后必须跟空格，推荐第2种（访问地址127.0.0.1:8082/girl/hi）。
+2个文件保留1个即可。
+如果代码中通过重写customize指定了端口号，那么此处配置的端口号将不生效。
+
+
+二、属性配置：
+
+1、注入参数：
+配置：fruit.apple: apple
+使用：@Value("${fruit.apple}}")
+2、参数嵌套：
+配置：
+fruit.apple: apple
+fruit.size: 6
+fruits: "apple: ${fruit.apple}}, size:${fruit.size}}"
+使用：@Value("${fruits}")，结果为fruitType: apple, size:6
+3、@ConfigurationProperties(prefix = "car")
+新建类CarProperties，注入前缀为car的配置。
+@Component
+@ConfigurationProperties(prefix = "car") // 注入前缀为car的配置
+public class CarProperties {
+    private String color;
+    private Integer size;
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+}
+
+使用：@Autowired
+       private CarProperties carProperties;
+       carProperties.getColor();
+
+三、开发环境、生产环境
+
+开发环境配置：application-dev.yml
+生产环境配置：application-prod.yml
+实际使用：application.yml
+spring:
+  profiles:
+    active: prod
+
+通过java -jar 启动时设置配置文件
+mvn install
+java -jar target/springboot-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
+
+
