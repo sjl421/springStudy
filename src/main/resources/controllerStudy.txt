@@ -1,0 +1,37 @@
+#Controller的使用
+
+1.Controller基本使用
+
+@Controller：处理Http请求；
+@RestController：Spring4新加注解，替代原来返回json所需的（类上加注解@Controller、@ResponseBody）；
+@RequestMapping：配置url映射。
+
+Note：
+@Controller必须配合模版来使用，单独在类上使用@Controller时，返回报500异常，控制台提示Error resolving template。
+@Controller：访问IP:port/rootPath/path返回指定的html页面，前后端分离开发模式不推荐此类做法。
+
+2、多个地址指向同一个方法/页面
+@RequestMapping(value = {"/hi","/hello"}, method = RequestMethod.GET)
+
+3、RequestMapping给类指定路径
+类上加注解
+
+4、访问方式
+@RequestMapping的参数method = RequestMethod.GET可指定访问方式，若不指定，则Get、Post都能访问（不推荐）。
+
+5、URL里的参数处理
+@PathVariable：获取url中的数据；{id}
+@RequestParam：获取请求参数的值；传统方式的参数（?id=123）
+@GetMapping：组合注解（等价于其他注解组合而成），还有诸如@PostMapping等注解。
+
+ 5.1、指定参数id：@RequestMapping(value = "/hi/{id}", method = RequestMethod.GET)
+ Note：id前若不加斜杠，则访问时hi与id值之间不加斜杠。
+ 5.2、使用参数id：public String hi(@PathVariable("id") Integer idParam) {}
+ 5.3、改变参数位置：将参数写在路径前（访问使亦须如此）
+ @RequestMapping(value = "/{id}/hi", method = RequestMethod.GET)
+ 5.4、参数设置默认值
+public String good(@RequestParam(value = "id",required = false,defaultValue = "0") Integer idParam) {}
+设置传统参数格式（?id=123），允许不传值，默认值为0（Note即便是Integer也需给0加引号）
+ 5.5、注解简化
+@RequestMapping(value = "/hi", method = RequestMethod.GET)
+可简化写成 @GetMapping(value="/good")、 @PostMapping(value="/good")
