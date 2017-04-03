@@ -1,0 +1,14 @@
+# 数据库操作
+Spring-Data-Jpa：
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<artifactId>mysql-connector-java</artifactId>
+ddl-auto:
+ create：自动创建空表（已有表则先删除再创建）
+    新建Fruit类，@Entity注解，程序运行自动在数据库中建表。
+    Hibernate: drop table if exists fruit
+    Hibernate: create table fruit (id integer not null auto_increment, color varchar(255), size integer, primary key (id))
+ update：自动创建空表（已有表数据将保留）
+ create-drop：应用停下来则删表
+ none：不做任何操作
+ validate：验证类中属性和表结构是否一致，不一致将报错。
+
