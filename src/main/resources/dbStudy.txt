@@ -1,8 +1,20 @@
 # 数据库操作
+一、配置
+ datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/studydb
+      username: root
+      password: mysql5717
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
 Spring-Data-Jpa：
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<artifactId>mysql-connector-java</artifactId>
-ddl-auto:
+
+二、ddl-auto几种格式:
  create：自动创建空表（已有表则先删除再创建）
     新建Fruit类，@Entity注解，程序运行自动在数据库中建表。
     Hibernate: drop table if exists fruit
@@ -12,3 +24,9 @@ ddl-auto:
  none：不做任何操作
  validate：验证类中属性和表结构是否一致，不一致将报错。
 
+三、使用方法：新建接口继承JpaRepository，注明相关bean（及ID）
+// JpaRepository<Fruit,Integer>（类名，ID类型）
+public interface IFruitDao extends JpaRepository<Fruit, Integer> {
+    // 通过size查询数据（方法名格式）
+    public List<Fruit> findBySize(Integer size);
+}

@@ -17,6 +17,11 @@ public class Fruit {
     public Fruit() { // 必须有一个无参构造函数
     }
 
+    public Fruit(String color, Integer size) {
+        this.color = color;
+        this.size = size;
+    }
+
     public Integer getId() {
         return id;
     }
