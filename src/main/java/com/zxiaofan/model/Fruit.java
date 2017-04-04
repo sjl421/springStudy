@@ -3,6 +3,7 @@ package com.zxiaofan.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 
 /**
  * Created by xiaofan on 2017/3/27.
@@ -13,7 +14,9 @@ public class Fruit {
     @GeneratedValue
     private Integer id;
     private String color;
+    @Min(value = 20, message = "水果未成熟禁止采摘")
     private Integer size;
+
     public Fruit() { // 必须有一个无参构造函数
     }
 

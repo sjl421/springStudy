@@ -4,8 +4,10 @@ import com.zxiaofan.dao.IFruitDao;
 import com.zxiaofan.dao.impl.FruitDaoImpl;
 import com.zxiaofan.model.Fruit;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -30,14 +32,17 @@ public class FruitController {
 
     /**
      * Post请求添加一条Fruit数据
+     * 验证结果存放于BindingResult
      *
-     * @param color
-     * @param size
      * @return
      */
     @PostMapping(value = "/fruits")
-    public Fruit fruitAdd(@RequestParam("color") String color, @RequestParam("size") Integer size) {
-        Fruit fruit = new Fruit(color, size);
+//    public Fruit fruitAdd(@RequestParam("color") String color, @RequestParam("size") Integer size) {
+    public Fruit fruitAdd(@Valid Fruit fruit, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            return null;
+        }
         return fruitDao.save(fruit);
     }
 

@@ -1,0 +1,8 @@
+# SpringBoot进阶——Web——表单验证@Valid
+    //   验证结果存放于BindingResult.
+    public Fruit fruitAdd(@Valid Fruit fruit, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {}
+    }
+
+    @Min(value = 20, message = "水果未成熟禁止采摘")
+    private Integer size;
