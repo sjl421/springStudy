@@ -30,3 +30,7 @@ public interface IFruitDao extends JpaRepository<Fruit, Integer> {
     // 通过size查询数据（方法名格式）
     public List<Fruit> findBySize(Integer size);
 }
+
+四、事物
+@Transactional
+多条数据要么都成功要么都失败

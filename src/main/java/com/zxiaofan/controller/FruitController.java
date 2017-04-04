@@ -1,6 +1,7 @@
 package com.zxiaofan.controller;
 
 import com.zxiaofan.dao.IFruitDao;
+import com.zxiaofan.dao.impl.FruitDaoImpl;
 import com.zxiaofan.model.Fruit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,8 @@ import java.util.List;
 public class FruitController {
     @Autowired
     private IFruitDao fruitDao;
+    @Autowired
+    private FruitDaoImpl fruitDaoImpl;
 
     /**
      * Get请求查询所有fruit列表
@@ -70,5 +73,10 @@ public class FruitController {
     @GetMapping(value = "/fruits/size/{size}")
     public List<Fruit> fruitListBySize(@PathVariable("size") Integer size) {
         return fruitDao.findBySize(size);
+    }
+
+    @PostMapping(value = "/fruits/insertList")
+    public void insertList() {
+        fruitDaoImpl.insertList();
     }
 }
