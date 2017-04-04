@@ -1,0 +1,16 @@
+# SpringBoot进阶——Web——AOP
+    spring-boot-starter-aop
+
+    /**
+     * 通用路径，避免代码重复
+     */
+    @Pointcut("execution(public * com.zxiaofan.controller.FruitController.*(..))")
+    public void log() {
+    }
+
+    @Before("log()")
+    public void doBefore(JoinPoint joinPoint) {}
+    @After("log()")
+    @AfterReturning
+
+    执行顺序：doBefore->method->doAfter->doAfterReturning

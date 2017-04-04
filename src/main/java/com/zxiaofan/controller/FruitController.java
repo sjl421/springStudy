@@ -3,6 +3,8 @@ package com.zxiaofan.controller;
 import com.zxiaofan.dao.IFruitDao;
 import com.zxiaofan.dao.impl.FruitDaoImpl;
 import com.zxiaofan.model.Fruit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,8 @@ import java.util.List;
  */
 @RestController
 public class FruitController {
+    private final static Logger logger = LoggerFactory.getLogger(FruitController.class);
+
     @Autowired
     private IFruitDao fruitDao;
     @Autowired
@@ -27,6 +31,7 @@ public class FruitController {
      */
     @GetMapping(value = "/fruits")
     public List<Fruit> fruitList() {
+        logger.info("fruitList");
         return fruitDao.findAll();
     }
 
@@ -51,6 +56,7 @@ public class FruitController {
      */
     @GetMapping(value = "/fruits/{id}")
     public Fruit fruitFindOne(@PathVariable("id") Integer id) {
+        logger.info("fruitFindOne");
         return fruitDao.findOne(id);
     }
 

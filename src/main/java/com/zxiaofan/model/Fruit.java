@@ -48,4 +48,13 @@ public class Fruit {
     public void setSize(Integer size) {
         this.size = size;
     }
+
+    @Override
+    public String toString() {
+        return "Fruit{" +
+                "id=" + id +
+                ", color='" + color + '\'' +
+                ", size=" + size +
+                '}';
+    }
 }
