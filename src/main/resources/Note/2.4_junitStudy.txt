@@ -1,0 +1,17 @@
+# SpringBoot进阶——Web——AOP
+  单元测试
+1、制定方法，Go To，Test
+2、Service单元测试
+    @RunWith(SpringRunner.class)
+    @SpringBootTest // 启动整个Spring工程
+3、Controller单元测试
+    @RunWith(SpringRunner.class)
+    @SpringBootTest
+    @AutoConfigureMockMvc
+    @Autowired
+    private MockMvc mvc;
+    mvc.perform(MockMvcRequestBuilders.get("/fruits")).andExpect(MockMvcResultMatchers.status().isOk()); // 使用get请求；期望返回状态码200
+    mvc.perform(MockMvcRequestBuilders.get("/fruits")).andExpect(MockMvcResultMatchers.content().string("zxiaofan")); // 使用get请求；期望返回内容为zxiaofan
+4、打包时单元测试
+mvn clean package
+跳过单元测试 mvn clean package -Dmaven.test.skip=true

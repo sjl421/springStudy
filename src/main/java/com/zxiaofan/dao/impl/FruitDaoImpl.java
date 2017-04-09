@@ -44,4 +44,14 @@ public class FruitDaoImpl {
             }
         }
     }
+
+    /**
+     * 单元测试方法.
+     *
+     * @param id
+     * @return
+     */
+    public Fruit findOne(Integer id) {
+        return fruitDao.findOne(id);
+    }
 }
