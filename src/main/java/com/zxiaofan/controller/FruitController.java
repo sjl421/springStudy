@@ -1,5 +1,7 @@
 package com.zxiaofan.controller;
 
+import com.zxiaofan.common.Result;
+import com.zxiaofan.common.ResultUtil;
 import com.zxiaofan.dao.IFruitDao;
 import com.zxiaofan.dao.impl.FruitDaoImpl;
 import com.zxiaofan.model.Fruit;
@@ -43,12 +45,13 @@ public class FruitController {
      */
     @PostMapping(value = "/fruits")
 //    public Fruit fruitAdd(@RequestParam("color") String color, @RequestParam("size") Integer size) {
-    public Fruit fruitAdd(@Valid Fruit fruit, BindingResult bindingResult) {
+    public Result<Fruit> fruitAdd(@Valid Fruit fruit, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-            return null;
+            String msg = bindingResult.getFieldError().getDefaultMessage();
+            return ResultUtil.error(0, msg);
         }
-        return fruitDao.save(fruit);
+        Fruit save = fruitDao.save(fruit);
+        return ResultUtil.success(save);
     }
 
     /**
@@ -90,4 +93,10 @@ public class FruitController {
     public void insertList() {
         fruitDaoImpl.insertList();
     }
+
+    @GetMapping(value = "/fruits/getSize/{id}")
+    public void getSize(@PathVariable("id") Integer id) throws Exception {
+        fruitDaoImpl.getSize(id);
+    }
+
 }

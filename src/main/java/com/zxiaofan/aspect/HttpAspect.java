@@ -14,7 +14,7 @@ import java.util.Objects;
 
 /**
  * 执行顺序：doBefore->method->doAfter->doAfterReturning
- *
+ * <p>
  * Created by xiaofan on 2017/4/4.
  */
 @Aspect
@@ -53,6 +53,10 @@ public class HttpAspect {
 
     @AfterReturning(returning = "object", pointcut = "log()")
     public void doAfterReturning(Object object) {
-        logger.info("response={}", object.toString());
+        if (null == object) {
+            logger.info("response={}", "");
+        } else {
+            logger.info("response={}", object.toString());
+        }
     }
 }
