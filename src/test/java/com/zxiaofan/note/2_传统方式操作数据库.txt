@@ -1,0 +1,18 @@
+2_传统方式操作数据库
+1、原生JDBC
+1.1、JDBCUtil
+可能报错：Establishing SSL connection without server's identity verification is not recommended...com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Access denied for user 'zxiaofan'@'localhost' to database 'studydb'
+原因：MySQL在高版本需要指明是否进行SSL连接
+解决方案：?useUnicode=true&characterEncoding=utf-8&useSSL=false
+Note：DB资源配置在配置文件中，使用代码读取即可。
+InputStream inputStream = JDBCUtil.class.getClassLoader().getResourceAsStream("jdbc.properties");
+Properties properties = new Properties();
+properties.load(inputStream);
+String url = properties.getProperty("jdbc.url");
+
+1.2、DAO及Model
+resultToEntity工具类将ResultSet转换为实体
+
+2、Spring jdbc
+ctx = new ClassPathXmlApplicationContext("beans-jdbc.xml");
+ jdbcTemplate.query(sql, new RowCallbackHandler() {}
