@@ -1,5 +1,6 @@
 package com.zxiaofan.model;
 
+import javax.persistence.Transient;
 import java.sql.Timestamp;
 import java.util.Date;
 

@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
-
+    <!-- 1 配置数据源 -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="username" value="zxiaofan"/>
@@ -18,4 +18,5 @@
     <bean id="userDao" class="com.zxiaofan.dao.impl.UserDaoSpringJDBCImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
+
 </beans>
