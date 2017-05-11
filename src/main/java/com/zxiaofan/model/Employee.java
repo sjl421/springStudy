@@ -14,6 +14,15 @@ public class Employee {
     private String name;
     private Integer age;
 
+    public Employee() {
+    }
+
+    public Employee(Integer id, String name, Integer age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
     @GeneratedValue // 主键
     @Id
     public Integer getId() {

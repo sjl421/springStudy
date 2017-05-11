@@ -7,6 +7,9 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by xiaofan on 2017/5/7.
  */
@@ -30,6 +33,26 @@ public class EmployeeRepositoryTest {
             System.out.println("null");
         } else {
             System.out.println(employee.toString());
+        }
+    }
+
+    @Test
+    public void testFindByNameStartingWithAndAgeLessThan() throws Exception {
+        List<Employee> employees = employeeRepository.findByNameStartingWithAndAgeLessThan("t", 21);
+        if (null != employees) {
+            for (Employee employee : employees) {
+                System.out.println(employee);
+            }
+        }
+    }
+
+    @Test
+    public void testFindByNameInAndAgeLessThanEqual() throws Exception {
+        List<Employee> employees = employeeRepository.findByNameInAndAgeLessThanEqual(Arrays.asList("t1", "t2"), 21);
+        if (null != employees) {
+            for (Employee employee : employees) {
+                System.out.println(employee);
+            }
         }
     }
 
