@@ -56,4 +56,49 @@ public class EmployeeRepositoryTest {
         }
     }
 
+    @Test
+    public void testGetEmployeeByMaxID() throws Exception {
+        Employee employee = employeeRepository.getEmployeeByMaxID();
+        if (null != employee) {
+            System.out.println(employee);
+        }
+    }
+
+    @Test
+    public void testQueryByNameAge() throws Exception {
+        List<Employee> employees = employeeRepository.queryByNameAge("t2", 21);
+        if (null != employees) {
+            for (Employee employee : employees) {
+                System.out.println(employee);
+            }
+        }
+    }
+
+    @Test
+    public void testQueryByNameAge2() throws Exception {
+        List<Employee> employees = employeeRepository.queryByNameAge2("t2", 21);
+        if (null != employees) {
+            for (Employee employee : employees) {
+                System.out.println(employee);
+            }
+        }
+    }
+
+    @Test
+    public void testQueryLike() throws Exception {
+//        List<Employee> employees = employeeRepository.queryLike("t1");
+        List<Employee> employees = employeeRepository.queryLike2("t1");
+        if (null != employees) {
+            for (Employee employee : employees) {
+                System.out.println(employee);
+            }
+        }
+    }
+
+    @Test
+    public void testGetCount() throws Exception {
+        Integer count = employeeRepository.getCount();
+        System.out.println(count);
+    }
+
 }
