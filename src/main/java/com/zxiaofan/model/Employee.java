@@ -1,14 +1,12 @@
 package com.zxiaofan.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by xiaofan on 2017/5/7.
  */
 @Entity
+@Table(name = "employee1")// 自定义表名
 public class Employee {
     private Integer id;
     private String name;
