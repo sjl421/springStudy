@@ -1,6 +1,7 @@
 package com.zxiaofan.repository;
 
 import com.zxiaofan.model.Employee;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.RepositoryDefinition;
@@ -70,4 +71,9 @@ public interface EmployeeRepository { // extends Repository<Employee,Integer> {
      */
     @Query(nativeQuery = true, value = "SELECT COUNT(1) FROM  Employee")
     public Integer getCount();
+
+    @Modifying
+    @Query("update Employee e set e.age= :age where e.id= :id")
+    public void updateAgeByID(@Param("id") Integer id, @Param("age") Integer age);
 }
+
