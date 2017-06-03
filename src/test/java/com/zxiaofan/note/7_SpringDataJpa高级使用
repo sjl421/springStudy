@@ -1,0 +1,9 @@
+7_SpringDataJpa高级使用
+
+7.1、CrudRepository
+
+7.2、PagingAndSortingRepository分页排序
+
+7.3、EmployeeJpaRepository
+
+7.4、JpaSpecificationExecutor

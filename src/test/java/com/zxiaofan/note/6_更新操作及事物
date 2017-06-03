@@ -1,0 +1,10 @@
+6_更新操作及事物
+
+未添加注解@Modifying
+Caused by: org.hibernate.hql.internal.QueryExecutionRequestException: Not supported for DML operations
+
+未添加事物注解（business成javax.transaction.@Transactional或者repositpry层@Modifying）
+Caused by: javax.persistence.TransactionRequiredException: Executing an update/delete query
+
+hibernate-entitymanager如果版本号是5.2.X可能报错（不兼容）
+Caused by: java.lang.NoSuchMethodError: org.hibernate.Session.getFlushMode()Lorg/hibernate/FlushMode;
