@@ -1,0 +1,7 @@
+# SpringBoot进阶——Web——AOP
+  异常统一处理。
+1、通用返回Bean：Result<T>
+2、返回值处理工具类：ResultUtil
+3、@ControllerAdvice // 捕获Controller抛出的异常,客户端收到更友好的JSON格式的提示。而不是常见的报错页面。
+  public class ExceptionHandle{}
+4、自定义异常类：FruitException extends RuntimeException
