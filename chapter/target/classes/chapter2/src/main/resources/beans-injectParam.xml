@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+    <!--注入参数详解-->
+    <!--①字面值<value><![CDATA[红旗CA72]]></value>-->
+    <!--②引用其他Bean-<ref>-->
+    <!--③集合类型属性，主要包括List、Set、Map、Properties-->
+    <bean id="boss_list" class="com.smart.injection.Boss">
+        <!--List属性既可通过value注入字符串，也可ref引用其他bean-->
+        <property name="list">
+            <list>
+                <value>Java</value>
+                <value>Pathon</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="boss_map" class="com.smart.injection.Boss">
+        <property name="mapWeek">
+            <map>
+                <entry>
+                    <key>
+                        <value>Mon</value>
+                    </key>
+                    <value>Reading</value>
+                </entry>
+                <entry>
+                    <key>
+                        <value>Tues</value>
+                    </key>
+                    <value>Sporting</value>
+                </entry>
+                <!-- 如果Map元素的键和值都是对象，可以ref
+                <entry>
+                    <key><ref bean="keyBean"/></key>
+                    <ref bean="valueBean"/>
+                </entry> -->
+            </map>
+        </property>
+    </bean>
+    <bean id="boss_pro" class="com.smart.injection.Boss">
+        <!--Properties键值只能是字符串，值的配置没有value标签-->
+        <property name="type">
+            <props>
+                <prop key="IDE">IDEA</prop>
+                <prop key="SQL">MySQL</prop>
+            </props>
+        </property>
+    </bean>
+    <!--④通过util命名空间配置集合类型的Bean-->
+    <!--需在Spring配置文件引入util命名空间-->
+    <util:list id="list_util" list-class="java.util.LinkedList">
+        <value>Coding</value>
+        <value>Walk</value>
+        <!--Set类似-->
+    </util:list>
+    <util:map id="map_util">
+        <entry key="Wed" value="Java"/>
+        <entry key="Thu" value="Spring"/>
+    </util:map>
+    <!-- <util:list>和Set支持value-type属性；Map支持key-type和value-type属性，指定键值类型 -->
+
+    <!--⑤简化配置方式-->
+    <!--简化XML配置：采用属性而非子元素配置信息-->
+    <!--Spring从2.5开始引入p命名空间，使用前需声明xmlns:p="http:~schema/p"-->
+    <bean id="car" class="com.smart.injection.Car"
+          p:brand="红旗CA72"
+          p:maxSpeed="260"/>
+    <bean id="boss" class="com.smart.injection.Boss"
+          p:car-ref="car"/>
+
+</beans>

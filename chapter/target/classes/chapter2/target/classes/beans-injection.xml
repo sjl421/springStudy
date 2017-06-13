@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--属性注入-->
+    <bean id="car" class="com.smart.injection.Car">
+        <!--brand后不小心多了一个空格，报异常NotWritablePropertyException，is not writable or has an invalid setter method-->
+        <property name="brand">
+            <value>红旗CA72</value>
+        </property>
+        <property name="maxSpeed">
+            <value>200</value>
+        </property>
+    </bean>
+    <!--构造函数注入-->
+    <!--构造注入-类型匹配入参-->
+    <bean id="carType" class="com.smart.injection.Car">
+        <constructor-arg type="java.lang.String"><!--①-->
+            <value>红旗CA72</value>
+        </constructor-arg>
+        <constructor-arg type="double"><!--②-->
+            <value>20000</value>
+        </constructor-arg>
+        <!--Car Bean中必须有和此处一致的构造函数（String、double参数的构造函数）-->
+        <!--①和②的位置不会影响最终配置结果-->
+    </bean>
+    <!--构造注入-索引匹配入参-->
+    <bean id="carIndex" class="com.smart.injection.Car">
+        <!--索引从0开始-->
+        <constructor-arg index="0" value="红旗CA72"/>
+        <constructor-arg index="1" value="中国一汽"/>
+        <constructor-arg index="2" value="20000"/>
+        <!-- 必须有一个3个入参的构造函数,如果不止一个，将以最后一个构造函数为准 -->
+    </bean>
+    <!--构造注入-类型、索引 联合匹配入参-->
+    <bean id="carTypeIndex" class="com.smart.injection.Car">
+        <constructor-arg index="0" type="java.lang.String">
+            <value>红旗CA72</value>
+        </constructor-arg>
+        <constructor-arg index="1" type="java.lang.String" value="中国一汽"/>
+        <!-- constructor-arg两种格式均可 -->
+        <!-- int、double直接写，不加java.lang，否则异常Could not resolve matching constructor (hint: specify index/type/name arguments for simple parameters to avoid type ambiguities) -->
+        <constructor-arg index="2" type="double">
+            <value>20000</value>
+        </constructor-arg>
+    </bean>
+</beans>
